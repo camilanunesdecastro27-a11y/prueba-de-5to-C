@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blessd - El Bendito | Sitio Oficial</title>
+
+  <!-- Fuentes de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome / Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ==========================================================================
+       1. VARIABLES Y ESTILOS BASE
+       ========================================================================== */
+    :root {
+      --bg-dark: #0a0a0c;
+      --bg-card: rgba(22, 22, 28, 0.7);
+      --bg-glass: rgba(255, 255, 255, 0.04);
+      --border-glass: rgba(255, 255, 255, 0.08);
+
+      --accent-blue: #00d2ff;
+      --accent-neon: #3a86ff;
+      --accent-gold: #ffbe0b;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+
+      --font-heading: 'Bebas Neue', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
+
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-neon);
+      border-radius: 4px;
+    }
+
+    /* Utilitarios */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #fff, var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 2rem;
+      font-family: var(--font-body);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, var(--accent-neon), var(--accent-blue));
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(58, 134, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(58, 134, 255, 0.6);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-blue);
+      background: rgba(0, 210, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* ==========================================================================
+       2. HEADER Y NAVEGACIÓN
+       ========================================================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.2rem 0;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .header.scrolled {
+      background: rgba(10, 10, 12, 0.9);
+      padding: 0.8rem 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 3px;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .logo span {
+      color: var(--accent-blue);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent-blue);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cart-btn-icon {
+      position: relative;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glass);
+      padding: 0.6rem;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .cart-btn-icon:hover {
+      background: var(--accent-blue);
+      color: #000;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--accent-gold);
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: 800;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       3. HERO SECTION
+       ========================================================================== */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: linear-gradient(to bottom, rgba(10, 10, 12, 0.3), var(--bg-dark)),
+                  url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+      padding-top: 80px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 30%;
+      left: 10%;
+      width: 300px;
+      height: 300px;
+      background: var(--accent-neon);
+      filter: blur(150px);
+      opacity: 0.3;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      background: rgba(0, 210, 255, 0.15);
+      border: 1px solid var(--accent-blue);
+      color: var(--accent-blue);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 6rem;
+      line-height: 0.9;
+      letter-spacing: 3px;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 5px 20px rgba(0,0,0,0.8);
+    }
+
+    .hero-title span {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--text-primary);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 550px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       4. BIOGRAFÍA
+       ========================================================================== */
+    .bio-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .bio-img-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      border: 1px solid var(--border-glass);
+    }
+
+    .bio-img-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition);
+      filter: grayscale(20%);
+    }
+
+    .bio-img-wrapper:hover img {
+      transform: scale(1.03);
+      filter: grayscale(0%);
+    }
+
+    .bio-badge {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-glass);
+      text-align: center;
+    }
+
+    .bio-badge h4 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      color: var(--accent-blue);
+      line-height: 1;
+    }
+
+    .bio-badge p {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+    }
+
+    .bio-text h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .bio-text p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .bio-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    .stat-item h5 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--accent-gold);
+      line-height: 1;
+    }
+
+    .stat-item p {
+      font-size: 0.8rem;
+      margin: 0;
+    }
+
+    /* ==========================================================================
+       5. MÚSICA & PLAYER
+       ========================================================================== */
+    .music-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glass);
+      color: var(--text-secondary);
+      padding: 0.5rem 1.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent-neon);
+      color: #fff;
+      border-color: var(--accent-neon);
+    }
+
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .track-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 1.2rem;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .track-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 210, 255, 0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .track-img {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .track-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .play-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .track-card:hover .play-overlay {
+      opacity: 1;
+    }
+
+    .play-overlay-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0.8);
+      transition: var(--transition);
+    }
+
+    .track-card:hover .play-overlay-btn {
+      transform: scale(1);
+    }
+
+    .track-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .track-info p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* Fixed Audio Bar Player */
+    .audio-player-fixed {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(16, 16, 22, 0.95);
+      backdrop-filter: blur(15px);
+      border-top: 1px solid var(--border-glass);
+      padding: 0.8rem 2rem;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .audio-player-fixed.active {
+      transform: translateY(0);
+    }
+
+    .player-track-details {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 25%;
+    }
+
+    .player-track-details img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .player-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      width: 50%;
+    }
+
+    .player-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .player-btn {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .player-btn:hover {
+      color: var(--accent-blue);
+    }
+
+    .player-btn-main {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background: var(--border-glass);
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent-blue);
+      border-radius: 2px;
+    }
+
+    /* ==========================================================================
+       6. TOUR DATES
+       ========================================================================== */
+    .tour-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .tour-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .tour-item:hover {
+      border-color: var(--accent-neon);
+      background: rgba(22, 22, 28, 0.9);
+      transform: scale(1.01);
+    }
+
+    .tour-date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glass);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      min-width: 80px;
+    }
+
+    .tour-date .day {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      line-height: 1;
+      color: var(--accent-blue);
+    }
+
+    .tour-date .month {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .tour-venue {
+      flex: 1;
+      margin: 0 2rem;
+    }
+
+    .tour-venue h4 {
+      font-size: 1.2rem;
+    }
+
+    .tour-venue p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       7. MERCH TIENDA
+       ========================================================================== */
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .merch-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .merch-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    }
+
+    .merch-img {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .merch-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .merch-card:hover .merch-img img {
+      transform: scale(1.08);
+    }
+
+    .merch-body {
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .merch-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .merch-price {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+
+    .merch-btn {
+      margin-top: auto;
+      width: 100%;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    /* ==========================================================================
+       8. GALERÍA
+       ========================================================================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 220px;
+      border: 1px solid var(--border-glass);
+    }
+
+    .gallery-item.large {
+      grid-column: span 2;
+      grid-row: span 2;
+      height: 455px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* ==========================================================================
+       9. FAN CLUB & FOOTER
+       ========================================================================== */
+    .fanclub-card {
+      background: linear-gradient(135deg, rgba(58, 134, 255, 0.1), rgba(0, 0, 0, 0.8));
+      border: 1px solid var(--accent-blue);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fanclub-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 2rem auto 0;
+    }
+
+    .fanclub-input {
+      flex: 1;
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      border: 1px solid var(--border-glass);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      outline: none;
+      font-family: var(--font-body);
+    }
+
+    .fanclub-input:focus {
+      border-color: var(--accent-blue);
+    }
+
+    .footer {
+      background: #050507;
+      padding: 3rem 0 1.5rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      background: var(--accent-blue);
+      color: #000;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border-glass);
+      padding-top: 1.5rem;
+    }
+
+    /* ==========================================================================
+       10. CARRITO MODAL & MODAL GENERAL
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      background: var(--bg-dark);
+      border-left: 1px solid var(--border-glass);
+      z-index: 2001;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .cart-drawer.active {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      background: var(--bg-card);
+      padding: 0.8rem;
+      border-radius: 8px;
+    }
+
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-details h5 {
+      font-size: 0.9rem;
+    }
+
+    .cart-item-details p {
+      color: var(--accent-gold);
+      font-size: 0.85rem;
+    }
+
+    .remove-item {
+      background: none;
+      border: none;
+      color: #ff4757;
+      cursor: pointer;
+    }
+
+    .cart-footer {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    /* Modal Ticket */
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 450px;
+      width: 90%;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .hero-title { font-size: 4.5rem; }
+      .bio-container { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.large { grid-column: span 2; grid-row: span 1; height: 220px; }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--bg-dark);
+        flex-direction: column;
+        justify-content: center;
+        transition: var(--transition);
+      }
+      .nav-links.active { left: 0; }
+      .hero-title { font-size: 3.5rem; }
+      .tour-item { flex-direction: column; text-align: center; gap: 1rem; }
+      .tour-venue { margin: 0; }
+      .fanclub-form { flex-direction: column; }
+      .audio-player-fixed { flex-direction: column; gap: 0.5rem; padding: 0.5rem 1rem; }
+      .player-track-details, .player-controls { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+     HEADER / NAVEGACIÓN
+     ========================================================================== -->
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="#" class="logo">BLESSD<span>.</span></a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <i data-lucide="menu"></i>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#bio">Biografía</a></li>
+        <li><a href="#musica">Música</a></li>
+        <li><a href="#tour">Tour</a></li>
+        <li><a href="#merch">Tienda</a></li>
+        <li><a href="#galeria">Galería</a></li>
+      </ul>
+
+      <button class="cart-btn-icon" id="openCartBtn" aria-label="Ver Carrito">
+        <i data-lucide="shopping-bag"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+     HERO SECTION
+     ========================================================================== -->
+  <section class="hero" id="inicio">
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-tag">Hecho en Medellín / Si Sabe</span>
+        <h1 class="hero-title">BLESSD <span>EL BENDITO</span></h1>
+        <p class="hero-desc">La voz líder de la nueva era del género urbano en Colombia. Llevando la cultura del barrio a los escenarios más grandes del mundo.</p>
+        <div class="hero-btns">
+          <a href="#musica" class="btn btn-primary"><i data-lucide="play"></i> Escuchar Ahora</a>
+          <a href="#tour" class="btn btn-outline"><i data-lucide="ticket"></i> Ver Fechas Tour</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     BIOGRAFÍA
+     ========================================================================== -->
+  <section id="bio">
+    <div class="container">
+      <div class="bio-container">
+        <div class="bio-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800&auto=format&fit=crop" alt="Blessd en concierto">
+          <div class="bio-badge">
+            <h4>#1</h4>
+            <p>Billboard Charts</p>
+          </div>
+        </div>
+        <div class="bio-text">
+          <h2 class="section-title" style="text-align: left;">DE MEDELLÍN PARA EL MUNDO</h2>
+          <p class="section-subtitle" style="text-align: left;">Stiven Mesa Londoño</p>
+          <p>Nacido e impulsado por las calles de Antioquia, Blessd se ha consolidado a paso firme como el artista referencia del movimiento urbano de la nueva generación.</p>
+          <p>Con éxitos globales e hitos transcendentales en las plataformas de streaming, "El Bendito" demuestra que con disciplina y visión los sueños de barrio superan cualquier frontera.</p>
+
+          <div class="bio-stats">
+            <div class="stat-item">
+              <h5>+15M</h5>
+              <p>Oyentes Mensuales</p>
+            </div>
+            <div class="stat-item">
+              <h5>+2B</h5>
+              <p>Reproducciones</p>
+            </div>
+            <div class="stat-item">
+              <h5>100%</h5>
+              <p>Autenticidad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     MÚSICA & REPRODUCTOR
+     ========================================================================== -->
+  <section id="musica">
+    <div class="container">
+      <h2 class="section-title">Discografía</h2>
+      <p class="section-subtitle">Lanzamientos Destacados y Sencillos</p>
+
+      <div class="music-filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="album">Álbumes</button>
+        <button class="filter-btn" data-filter="single">Sencillos</button>
+      </div>
+
+      <div class="tracks-grid" id="tracksGrid">
+        <!-- Generado dinámicamente con JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     TOUR DATES
+     ========================================================================== -->
+  <section id="tour">
+    <div class="container">
+      <h2 class="section-title">Tour Mundial 2026</h2>
+      <p class="section-subtitle">Acompaña a El Bendito en Directo</p>
+
+      <div class="tour-list" id="tourList">
+        <!-- Generado dinámicamente con JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     TIENDA / MERCH
+     ========================================================================== -->
+  <section id="merch">
+    <div class="container">
+      <h2 class="section-title">Merch Oficial</h2>
+      <p class="section-subtitle">Ediciones Limitadas "Si Sabe"</p>
+
+      <div class="merch-grid" id="merchGrid">
+        <!-- Generado dinámicamente con JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     GALERÍA
+     ========================================================================== -->
+  <section id="galeria">
+    <div class="container">
+      <h2 class="section-title">Galería</h2>
+      <p class="section-subtitle">Momentos de la Gira y Backstage</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item large">
+          <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=800&auto=format&fit=crop" alt="Concierto Blessd 1">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=600&auto=format&fit=crop" alt="Concierto Blessd 2">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=600&auto=format&fit=crop" alt="Concierto Blessd 3">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600&auto=format&fit=crop" alt="Concierto Blessd 4">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=600&auto=format&fit=crop" alt="Concierto Blessd 5">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     FAN CLUB / NEWSLETTER
+     ========================================================================== -->
+  <section id="fanclub">
+    <div class="container">
+      <div class="fanclub-card">
+        <h2 class="section-title" style="margin-bottom: 0.5rem;">Únete al Fan Club</h2>
+        <p style="color: var(--text-secondary);">Recibe antes que nadie las fechas del tour, lanzamientos exclusivos y acceso a preventa de merch.</p>
+
+        <form class="fanclub-form" id="fanForm">
+          <input type="email" placeholder="Ingresa tu correo electrónico" class="fanclub-input" required>
+          <button type="submit" class="btn btn-primary">Registrarme</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="#" class="logo">BLESSD<span>.</span></a>
+
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" class="social-icon" aria-label="Youtube"><i data-lucide="youtube"></i></a>
+          <a href="#" class="social-icon" aria-label="Spotify"><i data-lucide="music"></i></a>
+          <a href="#" class="social-icon" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Blessd / Warner Music Latina. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+     REPRODUCTOR FLOTANTE
+     ========================================================================== -->
+  <div class="audio-player-fixed" id="audioPlayerBar">
+    <div class="player-track-details">
+      <img src="" id="playerImg" alt="Cover Art">
+      <div>
+        <h5 id="playerTitle" style="font-size: 0.9rem;">Canción</h5>
+        <p id="playerArtist" style="font-size: 0.75rem; color: var(--text-secondary);">Blessd</p>
+      </div>
+    </div>
+
+    <div class="player-controls">
+      <div class="player-btn-group">
+        <button class="player-btn" id="prevTrackBtn"><i data-lucide="skip-back"></i></button>
+        <button class="player-btn player-btn-main" id="playPauseBtn"><i data-lucide="play" id="playIcon"></i></button>
+        <button class="player-btn" id="nextTrackBtn"><i data-lucide="skip-forward"></i></button>
+      </div>
+      <div class="progress-bar-container">
+        <span id="currentTime">0:00</span>
+        <div class="progress-bar" id="progressBar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span id="totalTime">0:00</span>
+      </div>
+    </div>
+
+    <button class="player-btn" id="closePlayerBtn"><i data-lucide="x"></i></button>
+  </div>
+
+  <!-- ==========================================================================
+     CARRITO DRAWER
+     ========================================================================== -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Tu Carrito</h3>
+      <button class="close-btn" id="closeCartBtn"><i data-lucide="x"></i></button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer">
+      <!-- Items agregados con JS -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotalAmount">$0.00</span>
+      </div>
+      <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="checkoutBtn">Comprar Ahora</button>
+    </div>
+  </div>
+
+  <!-- MODAL GENERAL (Compras / Alertas) -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box" id="modalBox">
+      <!-- Contenido dinámico con JS -->
+    </div>
+  </div>
+
+  <!-- Elemento Audio oculto -->
+  <audio id="mainAudio"></audio>
+
+  <!-- ==========================================================================
+     JAVASCRIPT INLINE
+     ========================================================================== -->
+  <script>
+    // Inicializar Lucide Icons
+    lucide.createIcons();
+
+    /* ==========================================================================
+       DATOS DE MÚSICA, TOUR Y MERCH
+       ========================================================================== */
+    const tracks = [
+      {
+        id: 1,
+        title: "Medallo",
+        type: "single",
+        duration: "3:15",
+        img: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=400&auto=format&fit=crop",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+      },
+      {
+        id: 2,
+        title: "Si Sabe Ferxxo",
+        type: "single",
+        duration: "2:58",
+        img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=400&auto=format&fit=crop",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+      },
+      {
+        id: 3,
+        title: "Siempre Blessd (Álbum)",
+        type: "album",
+        duration: "12 Tracks",
+        img: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=400&auto=format&fit=crop",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+      },
+      {
+        id: 4,
+        title: "Las Morras",
+        type: "single",
+        duration: "2:45",
+        img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=400&auto=format&fit=crop",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+      }
+    ];
+
+    const tours = [
+      { id: 1, day: "15", month: "OCT", city: "Bogotá, Colombia", venue: "Movistar Arena", status: "Disponible" },
+      { id: 2, day: "22", month: "OCT", city: "Medellín, Colombia", venue: "Atanasio Girardot", status: "Pocos Boletos" },
+      { id: 3, day: "05", month: "NOV", city: "Ciudad de México", venue: "Palacio de los Deportes", status: "Disponible" },
+      { id: 4, day: "18", month: "NOV", city: "Caracas, Venezuela", venue: "Poliedro de Caracas", status: "Disponible" }
+    ];
+
+    const merch = [
+      { id: 101, title: "Hoodie 'Si Sabe' Neón", price: 65.00, img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=400&auto=format&fit=crop" },
+      { id: 102, title: "Camiseta Oversized Logo", price: 35.00, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=400&auto=format&fit=crop" },
+      { id: 103, title: "Gorra 'El Bendito' Snapback", price: 30.00, img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=400&auto=format&fit=crop" },
+      { id: 104, title: "Vinyl Edición Especial", price: 45.00, img: "https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=400&auto=format&fit=crop" }
+    ];
+
+    let cart = [];
+    let currentTrackIndex = 0;
+
+    /* ==========================================================================
+       INICIALIZACIÓN Y RENDERIZADO
+       ========================================================================== */
+    document.addEventListener("DOMContentLoaded", () => {
+      renderTracks('all');
+      renderTour();
+      renderMerch();
+      setupHeaderScroll();
+      setupAudioPlayer();
+      setupCartDrawer();
+      setupFanForm();
+    });
+
+    // Cambiar fondo del header al hacer scroll
+    function setupHeaderScroll() {
+      const header = document.getElementById("header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Menú Mobile
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+    }
+
+    /* ==========================================================================
+       SECCIÓN MÚSICA & REPRODUCTOR AUDIO
+       ========================================================================== */
+    function renderTracks(filter) {
+      const grid = document.getElementById("tracksGrid");
+      grid.innerHTML = "";
+
+      const filteredTracks = filter === 'all' ? tracks : tracks.filter(t => t.type === filter);
+
+      filteredTracks.forEach((track, index) => {
+        const card = document.createElement("div");
+        card.className = "track-card";
+        card.innerHTML = `
+          <div class="track-img">
+            <img src="${track.img}" alt="${track.title}">
+            <div class="play-overlay" onclick="playTrack(${index})">
+              <div class="play-overlay-btn">
+                <i data-lucide="play"></i>
+              </div>
+            </div>
+          </div>
+          <div class="track-info">
+            <h4>${track.title}</h4>
+            <p>${track.type === 'album' ? 'Álbum' : 'Sencillo'} • ${track.duration}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    // Filtros de música
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        e.target.classList.add("active");
+        renderTracks(e.target.dataset.filter);
+      });
+    });
+
+    // Lógica del Audio Player
+    const audio = document.getElementById("mainAudio");
+    const playerBar = document.getElementById("audioPlayerBar");
+    const playIcon = document.getElementById("playIcon");
+
+    function setupAudioPlayer() {
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const closePlayerBtn = document.getElementById("closePlayerBtn");
+      const prevBtn = document.getElementById("prevTrackBtn");
+      const nextBtn = document.getElementById("nextTrackBtn");
+      const progressBar = document.getElementById("progressBar");
+
+      playPauseBtn.addEventListener("click", togglePlay);
+      closePlayerBtn.addEventListener("click", () => playerBar.classList.remove("active"));
+      
+      prevBtn.addEventListener("click", () => {
+        currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+        playTrack(currentTrackIndex);
+      });
+
+      nextBtn.addEventListener("click", () => {
+        currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+        playTrack(currentTrackIndex);
+      });
+
+      audio.addEventListener("timeupdate", updateProgress);
+      progressBar.addEventListener("click", setProgress);
+    }
+
+    function playTrack(index) {
+      currentTrackIndex = index;
+      const track = tracks[index];
+
+      document.getElementById("playerImg").src = track.img;
+      document.getElementById("playerTitle").innerText = track.title;
+      audio.src = track.src;
+
+      playerBar.classList.add("active");
+      audio.play();
+      playIcon.setAttribute("data-lucide", "pause");
+      lucide.createIcons();
+    }
+
+    function togglePlay() {
+      if (audio.paused) {
+        audio.play();
+        playIcon.setAttribute("data-lucide", "pause");
+      } else {
+        audio.pause();
+        playIcon.setAttribute("data-lucide", "play");
+      }
+      lucide.createIcons();
+    }
+
+    function updateProgress() {
+      if (audio.duration) {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        document.getElementById("progressFill").style.width = `${percent}%`;
+        
+        // Formatear tiempos
+        document.getElementById("currentTime").innerText = formatTime(audio.currentTime);
+        document.getElementById("totalTime").innerText = formatTime(audio.duration);
+      }
+    }
+
+    function setProgress(e) {
+      const width = this.clientWidth;
+      const clickX = e.offsetX;
+      const duration = audio.duration;
+      audio.currentTime = (clickX / width) * duration;
+    }
+
+    function formatTime(seconds) {
+      const min = Math.floor(seconds / 60);
+      const sec = Math.floor(seconds % 60);
+      return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    }
+
+    /* ==========================================================================
+       SECCIÓN TOUR DATES
+       ========================================================================== */
+    function renderTour() {
+      const list = document.getElementById("tourList");
+      list.innerHTML = "";
+
+      tours.forEach(t => {
+        const item = document.createElement("div");
+        item.className = "tour-item";
+        item.innerHTML = `
+          <div class="tour-date">
+            <span class="day">${t.day}</span>
+            <span class="month">${t.month}</span>
+          </div>
+          <div class="tour-venue">
+            <h4>${t.city}</h4>
+            <p>${t.venue}</p>
+          </div>
+          <button class="btn btn-primary" onclick="buyTickets('${t.city}')">Comprar Entradas</button>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function buyTickets(city) {
+      showModal(`
+        <h3>¡Entradas para ${city}!</h3>
+        <p style="color: var(--text-secondary); margin: 1rem 0;">Redirigiendo a la plataforma oficial de boletaje de la gira.</p>
+        <button class="btn btn-primary" onclick="closeModal()">Entendido</button>
+      `);
+    }
+
+    /* ==========================================================================
+       TIENDA Y CARRITO DE COMPRAS
+       ========================================================================== */
+    function renderMerch() {
+      const grid = document.getElementById("merchGrid");
+      grid.innerHTML = "";
+
+      merch.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "merch-card";
+        card.innerHTML = `
+          <div class="merch-img">
+            <img src="${item.img}" alt="${item.title}">
+          </div>
+          <div class="merch-body">
+            <h4 class="merch-title">${item.title}</h4>
+            <div class="merch-price">$${item.price.toFixed(2)}</div>
+            <button class="btn btn-outline merch-btn" onclick="addToCart(${item.id})">
+              <i data-lucide="shopping-cart"></i> Agregar
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function addToCart(id) {
+      const product = merch.find(p => p.id === id);
+      cart.push(product);
+      updateCartUI();
+      openCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const cartBadge = document.getElementById("cartBadge");
+      const cartContainer = document.getElementById("cartItemsContainer");
+      const cartTotal = document.getElementById("cartTotalAmount");
+
+      cartBadge.innerText = cart.length;
+      cartContainer.innerHTML = "";
+
+      let total = 0;
+
+      cart.forEach((item, idx) => {
+        total += item.price;
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.title}">
+          <div class="cart-item-details">
+            <h5>${item.title}</h5>
+            <p>$${item.price.toFixed(2)}</p>
+          </div>
+          <button class="remove-item" onclick="removeFromCart(${idx})"><i data-lucide="trash-2"></i></button>
+        `;
+        cartContainer.appendChild(div);
+      });
+
+      cartTotal.innerText = `$${total.toFixed(2)}`;
+      lucide.createIcons();
+    }
+
+    function setupCartDrawer() {
+      const openCartBtn = document.getElementById("openCartBtn");
+      const closeCartBtn = document.getElementById("closeCartBtn");
+      const cartDrawer = document.getElementById("cartDrawer");
+      const checkoutBtn = document.getElementById("checkoutBtn");
+
+      openCartBtn.addEventListener("click", openCart);
+      closeCartBtn.addEventListener("click", closeCart);
+
+      checkoutBtn.addEventListener("click", () => {
+        if (cart.length === 0) {
+          alert("Tu carrito está vacío");
+          return;
+        }
+        closeCart();
+        showModal(`
+          <h3>¡Gracias por tu compra!</h3>
+          <p style="color: var(--text-secondary); margin: 1rem 0;">Procesando pedido. Se enviará la confirmación a tu correo electrónico.</p>
+          <button class="btn btn-primary" onclick="clearCartAndClose()">Cerrar</button>
+        `);
+      });
+    }
+
+    function openCart() {
+      document.getElementById("cartDrawer").classList.add("active");
+    }
+
+    function closeCart() {
+      document.getElementById("cartDrawer").classList.remove("active");
+    }
+
+    function clearCartAndClose() {
+      cart = [];
+      updateCartUI();
+      closeModal();
+    }
+
+    /* ==========================================================================
+       MODAL DE UTILIDADES Y NEWSLETTER
+       ========================================================================== */
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalBox = document.getElementById("modalBox");
+
+    function showModal(content) {
+      modalBox.innerHTML = content;
+      modalOverlay.classList.add("active");
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove("active");
+    }
+
+    modalOverlay.addEventListener("click", (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+
+    function setupFanForm() {
+      const form = document.getElementById("fanForm");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        showModal(`
+          <h3>¡Bienvenido a la Familia!</h3>
+          <p style="color: var(--text-secondary); margin: 1rem 0;">Te has suscrito con éxito al Fan Club oficial de Blessd. Revisa tu bandeja de entrada.</p>
+          <button class="btn btn-primary" onclick="closeModal()">Aceptar</button>
+        `);
+        form.reset();
+      });
+    }
+  </script>
+</body>
+</html>
